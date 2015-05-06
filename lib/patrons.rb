@@ -25,5 +25,17 @@ class Patron
     saved_patron = DB.exec("INSERT INTO patrons (name, id) VALUES ('#{name}', '#{id}') RETURNING id;")
     @id = saved_patron.first.fetch("id").to_i()
   end
+  
+  define_singleton_method(:find) do |individual|
+    all_patrons = Patron.all()
+    found_patron = nil
+    all_patrons.each() do |patron|
+      if individual == patron
+        found_patron = patron
+      end
+    end
+    found_patron
+  end
+
 
 end

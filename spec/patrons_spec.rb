@@ -52,7 +52,7 @@ describe(Patron) do
     it('locates a specific patron within the class of all patrons') do
       test_patron = Patron.new({:name => "Spiderman", :id => 50})
       test_patron.save()
-      expect(Patron.find(test_patron)).to(eq([test_patron]))
+      expect(Patron.find(test_patron)).to(eq(test_patron))
     end
   end
 
