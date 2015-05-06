@@ -20,5 +20,10 @@ class Patron
   define_method(:==) do |other|
     (self.name == other.name) && (self.id == other.id)
   end
-  
+
+  define_method(:save) do
+    saved_patron = DB.exec("INSERT INTO patrons (name, id) VALUES ('#{name}', '#{id}') RETURNING id;")
+    @id = saved_patron.first.fetch("id").to_i()
+  end
+
 end

@@ -10,7 +10,6 @@ RSpec.configure do |config|
   end
 end
 
-
 describe(Patron) do
 
   describe('#name') do
@@ -38,6 +37,22 @@ describe(Patron) do
       test_patron = Patron.new({:name => "courtney", :id => 1})
       test_patron2 = Patron.new({:name => "courtney", :id => 1})
       expect(test_patron).to(eq(test_patron2))
+    end
+  end
+
+  describe('#save') do
+    it('saves a patron to database for future recall') do
+      test_patron = Patron.new({:name => "ian", :id => 2})
+      test_patron.save()
+      expect(Patron.all).to(eq([test_patron]))
+    end
+  end
+
+  describe('.find') do
+    it('locates a specific patron within the class of all patrons') do
+      test_patron = Patron.new({:name => "Spiderman", :id => 50})
+      test_patron.save()
+      expect(Patron.find(test_patron)).to(eq([test_patron]))
     end
   end
 
