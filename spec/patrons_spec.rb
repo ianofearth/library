@@ -1,14 +1,15 @@
-require("rspec")
-require("pg")
-require("patrons")
+require("spec_helper")
+# require("rspec")
+# require("pg")
+# require("patrons")
 
-DB = PG.connect({:dbname => "library_test"})
-
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM patrons *;")
-  end
-end
+# DB = PG.connect({:dbname => "library_test"})
+#
+# RSpec.configure do |config|
+#   config.after(:each) do
+#     DB.exec("DELETE FROM patrons *;")
+#   end
+# end
 
 describe(Patron) do
 
