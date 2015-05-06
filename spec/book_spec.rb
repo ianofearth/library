@@ -34,7 +34,7 @@ describe(Book) do
 
   describe('.all') do
     it('returns a list of all books') do
-      expect(Books.all()).to(eq([]))
+      expect(Book.all()).to(eq([]))
     end
   end
 end
