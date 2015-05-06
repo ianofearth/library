@@ -33,4 +33,12 @@ describe(Patron) do
     end
   end
 
+  describe('#==') do
+    it('recognizes two entries are the same') do
+      test_patron = Patron.new({:name => "courtney", :id => 1})
+      test_patron2 = Patron.new({:name => "courtney", :id => 1})
+      expect(test_patron).to(eq(test_patron2))
+    end
+  end
+
 end
