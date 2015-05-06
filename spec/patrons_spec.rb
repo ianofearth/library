@@ -11,4 +11,11 @@ describe(Patron) do
     end
   end
 
+  describe('#id') do
+    it('returns the patron id of a given patron') do
+      test_patron = Patron.new({:name => "courtney", :id => 1})
+      expect(test_patron.id()).to(eq(1))
+    end
+  end
+
 end
