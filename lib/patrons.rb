@@ -5,4 +5,9 @@ class Patron
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
   end
+
+  define_singleton_method(:all) do
+
+
+
 end
