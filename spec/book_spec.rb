@@ -37,6 +37,23 @@ describe(Book) do
       expect(Book.all()).to(eq([]))
     end
   end
+
+   describe('#save') do
+     it('will save book information to the database') do
+       test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => 1})
+       test_book.save()
+       expect(Book.all()).to(eq([test_book]))
+     end
+   end
+
+   describe('#==') do
+     it('recognizes two entries are the same') do
+       test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => nil})
+       test_book2 = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => nil})
+       expect(test_book).to(eq(test_book2))
+     end
+   end
+
 end
 
 
