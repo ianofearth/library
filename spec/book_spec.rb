@@ -62,8 +62,18 @@ describe(Book) do
      end
    end
 
+  #  describe('#borrow') do
+  #    it('connects the patron and book in join table, creating record of patron borrowing book') do
+  #      test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => 1})
+  #      test_patron = Patron.new({:name => "courtney", :id => 1})
+  #      test_book.borrow(test_patron)
+  #
+
 end
 
 
       # test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => nil})
       #
+
+      #  describe('#checkout') do
+      #    it('will associate a checkut date with a book') do

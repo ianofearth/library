@@ -57,4 +57,20 @@ describe(Patron) do
     end
   end
 
+  describe('#checked_out_save') do   ####this may be useless
+    it('will save a patrons information in the database') do
+      test_patron = Patron.new({:name => "Spiderman", :id => 50})
+      test_patron.save()
+      expect(test_patron.checked_out_save()).to(eq(50))
+    end
+  end
+
+
+  # describe('#checked_out') do
+  #   it('returns which books, if any, a patron has checked out. is empty at first?') do
+  #     test_patron = Patron.new({:name => "Spiderman", :id => 50})
+  #     expect(test_patron.checked_out()).to(eq([]))
+  #   end
+  # end
+
 end
