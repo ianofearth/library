@@ -54,6 +54,14 @@ describe(Book) do
      end
    end
 
+   describe('.find') do
+     it('locates a specific book within the class of all books') do
+       test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => 1})
+       test_book.save()
+       expect(Book.find(test_book)).to(eq(test_book))
+     end
+   end
+
 end
 
 

@@ -30,4 +30,16 @@ class Book
     (self.title == other.title) && (self.author == other.author) && (self.genre == other.genre) && (self.id == other.id)
   end
 
+  define_singleton_method(:find) do |individual|
+    all_books = Book.all()
+    found_book = nil
+    all_books.each() do |book|
+      if individual == book
+        found_book = book
+      end
+    end
+    found_book
+  end
+
+
 end
