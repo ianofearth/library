@@ -41,5 +41,16 @@ class Book
     found_book
   end
 
+  # define_method(:who_has_save) do |patron|
+  #   library_transaction = DB.exec("INSERT INTO books_patrons (book_id, patron_id) VALUES ('#{book.id}','#{self.id}');")
+  # end
+  #
+  define_method(:who_has) do
+    checked_out_books = DB.exec("SELECT patron_id FROM books_patrons WHERE book_id = #{self.id()};")
+    patron_books = []
+    patron_id = checked_out_books.first.fetch("patron_id")
+    patron_books.push(patron_id.to_i())
+    patron_books
+  end
 
 end

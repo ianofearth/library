@@ -1,15 +1,4 @@
 require("spec_helper")
-# require("rspec")
-# require("pg")
-# require("patrons")
-
-# DB = PG.connect({:dbname => "library_test"})
-#
-# RSpec.configure do |config|
-#   config.after(:each) do
-#     DB.exec("DELETE FROM patrons *;")
-#   end
-# end
 
 describe(Patron) do
 
@@ -57,7 +46,7 @@ describe(Patron) do
     end
   end
 
-  describe('#checked_out_save') do   ####this may be useless
+  describe('#checked_out_save') do   ####this may be (IS DEFINITELY NOT!) useless
     it('will save books a patron has checked out to database') do
       test_patron = Patron.new({:name => "Spiderman", :id => 50})
       test_patron.save()
@@ -67,7 +56,6 @@ describe(Patron) do
       expect(test_patron.checked_out()).to(eq([test_book.id()]))
     end
   end
-
 
   describe('#checked_out') do
     it('returns which books, if any, a patron has checked out. is empty at first?') do

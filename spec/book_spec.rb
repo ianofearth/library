@@ -30,8 +30,6 @@ describe(Book) do
     end
   end
 
-
-
   describe('.all') do
     it('returns a list of all books') do
       expect(Book.all()).to(eq([]))
@@ -62,18 +60,15 @@ describe(Book) do
      end
    end
 
-  #  describe('#borrow') do
-  #    it('connects the patron and book in join table, creating record of patron borrowing book') do
-  #      test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => 1})
-  #      test_patron = Patron.new({:name => "courtney", :id => 1})
-  #      test_book.borrow(test_patron)
-  #
+   describe('#who_has') do
+     it('returns which patrons, if any, have checked out a book') do
+       test_patron = Patron.new({:name => "Spiderman", :id => 50})
+       test_patron.save()
+       test_book2 = Book.new({:title => "Where the Wild Things Are", :author => "Maurice Sendak", :genre => "childrens fiction", :id => 2})
+       test_book2.save()
+       test_patron.checked_out_save(test_book2)
+       expect(test_book2.who_has()).to(eq([test_patron.id()]))
+     end
+   end
 
 end
-
-
-      # test_book = Book.new({:title => "Grapes of Wrath", :author => "John Steinbeck", :genre => "historical fiction", :id => nil})
-      #
-
-      #  describe('#checkout') do
-      #    it('will associate a checkut date with a book') do
