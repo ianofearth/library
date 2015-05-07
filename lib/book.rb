@@ -1,11 +1,11 @@
 class Book
-  attr_reader(:title, :author, :genre, :id)
+  attr_reader(:title, :author, :genre)
 
   define_method(:initialize) do |attributes|
     @title = attributes.fetch(:title)
     @author = attributes.fetch(:author)
     @genre = attributes.fetch(:genre)
-    @id = attributes.fetch(:id)
+  #  @id = attributes.fetch(:id)
   end
 
   define_singleton_method(:all) do
@@ -22,7 +22,7 @@ class Book
   end
 
   define_method(:save) do
-    saved_book = DB.exec("INSERT INTO books (title, author, genre, id) VALUES ('#{@title}', '#{@author}', '#{@genre}', '#{@id}') RETURNING id;")
+    saved_book = DB.exec("INSERT INTO books (title, author, genre) VALUES ('#{@title}', '#{@author}', '#{@genre}') RETURNING id;")
     @id = saved_book.first.fetch("id").to_i()
   end
 
@@ -53,4 +53,8 @@ class Book
     patron_books
   end
 
+  define_method(:id) do
+    @book_id = DB.exec("SELECT id FROM books WHERE title = '#{self.title()}';")
+
+end
 end
