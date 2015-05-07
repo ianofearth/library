@@ -29,10 +29,20 @@ post('/add_book') do
 end
 
 get('/books/:id') do
-  @book_id = params.fetch("id").to_i()
-  @book = Book.find(book_id)
+
+  # book_id = params.fetch("id").to_i()
+  # specific_book = Book.find(book_id)
+  @book = Book.find(params.fetch("id"))
+  # specific_book = DB.exec("SELECT FROM books WHERE book_id = #{book_id};")
+  #
+  # @book = Book.find(book_id)
+
   # @title = @book.title()
   # @id = DB.exec("SELECT id FROM books WHERE title = '#{@title}';")
-erb(:books)
+erb(:book)
+end
 
+post('/books/:id') do
+  @book = Book.find(params.fetch("id"))
+  erb(:book)
 end

@@ -1,11 +1,11 @@
 class Book
-  attr_reader(:title, :author, :genre)
+  attr_reader(:title, :author, :genre, :id)
 
   define_method(:initialize) do |attributes|
     @title = attributes.fetch(:title)
     @author = attributes.fetch(:author)
     @genre = attributes.fetch(:genre)
-  #  @id = attributes.fetch(:id)
+    @id = attributes.fetch(:id)
   end
 
   define_singleton_method(:all) do
@@ -30,16 +30,16 @@ class Book
     (self.title == other.title) && (self.author == other.author) && (self.genre == other.genre) && (self.id == other.id)
   end
 
-  define_singleton_method(:find) do |individual|
-    all_books = Book.all()
-    found_book = nil
-    all_books.each() do |book|
-      if individual == book
-        found_book = book
-      end
-    end
-    found_book
-  end
+  # define_singleton_method(:find) do |individual|
+  #   all_books = Book.all()
+  #   found_book = nil
+  #   all_books.each() do |book|
+  #     if individual == book
+  #       found_book = book
+  #     end
+  #   end
+  #   found_book
+  # end
 
   # define_method(:who_has_save) do |patron|
   #   library_transaction = DB.exec("INSERT INTO books_patrons (book_id, patron_id) VALUES ('#{book.id}','#{self.id}');")
@@ -53,8 +53,18 @@ class Book
     patron_books
   end
 
-  define_method(:id) do
-    @book_id = DB.exec("SELECT id FROM books WHERE title = '#{self.title()}';")
 
-end
+  define_singleton_method(:find) do |id|
+    result = DB.exec("SELECT * FROM books WHERE id = #{id};")
+    title = result.first().fetch("title")
+    author = result.first().fetch("author")
+    genre = result.first().fetch("genre")
+    id = result.first().fetch("id").to_i()
+    Book.new({:title => title, :author => author, :genre => genre, :id => id})
+  end
+
+  # define_method(:id) do
+  #   @id = DB.exec("SELECT id FROM books WHERE title = '#{self.title()}';")
+  #
+  # end
 end
