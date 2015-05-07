@@ -38,14 +38,14 @@ class Patron
   end
 
   define_method(:checked_out_save) do |book|
-    library_transaction = DB.exec("INSERT INTO books_patrons (book_id, patron_id) VALUES ('#{self.id}', '#{book.id}') RETURNING id;")
+    library_transaction = DB.exec("INSERT INTO books_patrons (book_id, patron_id) VALUES ('#{book.id}','#{self.id}');")
   end
 
-  # define_method(:checked_out) do
-  #   returned_checked_out = DB.exec("SELECT book_id FROM books_patrons WHERE patron_id = #{self.id()};")
-  #   checked_out_books = []
-  #   book_id = returned_checked_out.first().fetch("book_id")
-  #   checked_out_books.push("book_id")
-  # checked_out_book
-  # end
+  define_method(:checked_out) do
+    patron_books = DB.exec("SELECT book_id FROM books_patrons WHERE patron_id = #{self.id()};")
+    checked_out_books = []
+    book_id = patron_books.first.fetch("book_id")
+    checked_out_books.push(book_id.to_i())
+  checked_out_books
+  end
 end
